@@ -47,7 +47,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
 
         [HttpGet("{id:guid}")]
-
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetStudentsByKeyAsync(Guid id)  //Get student data by Id
         {
             try
