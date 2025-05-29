@@ -30,11 +30,6 @@ namespace SoftoneStudentManagmentSystem.Controllers
         #region Get Student Data
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAllStudentsAsync()  //Get All Student Data
         {
             try
@@ -52,11 +47,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
 
         [HttpGet("{id:guid}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<IActionResult> GetStudentsByKeyAsync(Guid id)  //Get student data by Id
         {
             try
@@ -72,12 +63,8 @@ namespace SoftoneStudentManagmentSystem.Controllers
             }
         }
 
-        [HttpGet("{search:string}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("search")]
+        //[HttpGet("{search:string}")]
         public async Task<IActionResult> GetStudentsBySearchTextAsync(string search)  //Get student data by Search Text
         {
             try
