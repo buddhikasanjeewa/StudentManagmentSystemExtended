@@ -17,11 +17,11 @@ namespace SoftoneStudentManagmentSystem.Controllers
     [ApiController]
     public class StudentApiController : ControllerBase
     {
-        private readonly StudentService stuService;
+        private readonly AStudentService stuService;
 
         #region Dependancy Injection
         //Apply dependancy injection
-        public StudentApiController(StudentService _stuService)
+        public StudentApiController(AStudentService _stuService)
         {
             this.stuService = _stuService;
         }
