@@ -38,6 +38,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+// Enable CORS to allow requests from any origin, header, and method
+//Allow 3rd party frond end to connect this Api
+app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
+
 app.MapControllers();
 
 app.Run();
