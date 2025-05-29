@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DbChanges\Development\" />
     <Folder Include="DbChanges\Production\" />
   </ItemGroup>
 

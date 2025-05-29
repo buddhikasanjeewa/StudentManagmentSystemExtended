@@ -64,7 +64,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
         }
 
         [HttpGet("search")]
-        //[HttpGet("{search:string}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetStudentsBySearchTextAsync(string search)  //Get student data by Search Text
         {
             try
@@ -84,7 +84,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
         #region Update Student Data
         [HttpPost]
-        public async Task<IActionResult> SaveStudentData([FromBody] IStudentRequest stuRequest)  //Save Student data
+        public async Task<IActionResult> SaveStudentData([FromBody] StudentRequest stuRequest)  //Save Student data
         {
             try
             {
@@ -122,10 +122,6 @@ namespace SoftoneStudentManagmentSystem.Controllers
                 }
 
                 var result = await this.stuService.DeleteStudentData(id);
-                if (result <= 0)
-                {
-                    return NotFound("Student not found");
-                }
                 return Ok("Student deleted successfully");
             }
             catch (Exception ex)
