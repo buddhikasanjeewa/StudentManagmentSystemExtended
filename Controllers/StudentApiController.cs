@@ -98,7 +98,8 @@ namespace SoftoneStudentManagmentSystem.Controllers
                 {
                     return NotFound("Student not found");
                 }
-                return Ok("Student saved successfully");
+                //return Ok("Student saved successfully");
+                return Ok(result);
         
             }
             catch (Exception ex)
@@ -122,7 +123,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
                 }
 
                 var result = await this.stuService.DeleteStudentData(id);
-                return Ok("Student deleted successfully");
+                return Ok(result);
             }
             catch (Exception ex)
             {
