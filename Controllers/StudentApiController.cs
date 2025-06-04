@@ -3,6 +3,7 @@ using Business_Logic_Layer.Services.AbstactClasses;
 using Business_Logic_Layer.Services.ConcreteClasses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SoftoneStudentManagmentSystem.Controllers
@@ -18,18 +19,21 @@ namespace SoftoneStudentManagmentSystem.Controllers
     public class StudentApiController : ControllerBase
     {
         private readonly AStudentService stuService;
+     
 
         #region Dependancy Injection
         //Apply dependancy injection
         public StudentApiController(AStudentService _stuService)
         {
             this.stuService = _stuService;
+           
         }
         #endregion
 
         #region Get Student Data
 
         [HttpGet]
+        [ResponseCache(Duration = 60)] //Cache Resonse 60 seconds
         public async Task<IActionResult> GetAllStudentsAsync()  //Get All Student Data
         {
             try
@@ -48,6 +52,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
         [HttpGet("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetStudentsByKeyAsync(Guid id)  //Get student data by Id
         {
             try
@@ -63,8 +68,26 @@ namespace SoftoneStudentManagmentSystem.Controllers
             }
         }
 
+        [HttpGet("{id:guid}/{isImage:bool}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetStudentsImageData(Guid id,bool isImage)  //Get student data by Id
+        {
+            try
+            {
+                var result = await this.stuService.GetStudentsImageById(id);
+                if (result == null)
+                    return NotFound();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
         [HttpGet("search")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetStudentsBySearchTextAsync(string search)  //Get student data by Search Text
         {
             try

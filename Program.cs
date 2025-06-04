@@ -1,8 +1,11 @@
 using Business_Logic_Layer;
 using DAL;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SoftoneStudentManagmentSystem;
+using System.Text.Json;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,28 @@ builder.Services.AddSwaggerGen();
 //Add dependancy injection for DAL and BLL layers
 builder.Services.RegisterDALDependencies(builder.Configuration); 
 builder.Services.RegisterBLLDependencies(builder.Configuration);
+//Upgrade to Http 1 and Http 2
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // HTTP/1.1
+    options.ListenAnyIP(5000);
+
+    // HTTPS with HTTP/1.1, HTTP/2 and HTTP/3
+    options.ListenAnyIP(5001, listenOptions =>
+    {
+        listenOptions.UseHttps();
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+    });
+});
+//Tune of Json Serialization
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+        options.JsonSerializerOptions.IgnoreNullValues = true;
+    });
 
 
 //var conString = builder.Configuration.GetConnectionString("StuConnStr") ??
@@ -34,6 +59,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseResponseCaching();//Enable response cacheing
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
