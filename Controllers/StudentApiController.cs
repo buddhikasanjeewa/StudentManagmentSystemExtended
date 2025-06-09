@@ -38,17 +38,17 @@ namespace SoftoneStudentManagmentSystem.Controllers
         // [ResponseCache(Duration = 60)] //Cache Resonse 60 seconds
         public async Task<IActionResult> GetAllStudentsAsync()  //Get All Student Data
         {
-           try
-            {
+           //try
+           // {
                 var result = await this.stuService.GetStudents();
                 if (result == null || result.Count == 0)
                     return NotFound();
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
 
@@ -58,34 +58,34 @@ namespace SoftoneStudentManagmentSystem.Controllers
         [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetStudentsByKeyAsync(Guid id)  //Get student data by Id
         {
-            try
-            {
+            //try
+            //{
                 var result = await this.stuService.GetStudentsbyId(id);
                 if (result == null || result.Count == 0)
                     return NotFound();
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
         [HttpGet("{id:guid}/{isImage:bool}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetStudentsImageData(Guid id,bool isImage)  //Get student data by Id
         {
-            try
-            {
+            //try
+            //{
                 var result = await this.stuService.GetStudentsImageById(id);
                 if (result == null)
                     return NotFound();
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
         [HttpGet("search")]
@@ -93,17 +93,17 @@ namespace SoftoneStudentManagmentSystem.Controllers
         [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetStudentsBySearchTextAsync(string search)  //Get student data by Search Text
         {
-            try
-            {
+            //try
+            //{
                 var result = await this.stuService.GetStudentsbyText(search);
                 if (result == null || result.Count == 0)
                     return NotFound();
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
         #endregion
@@ -115,8 +115,8 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
         public async Task<IActionResult> SaveStudentData([FromBody] StudentRequest stuRequest)  //Save Student data
         {
-            try
-            {
+            //try
+            //{
                 if (stuRequest == null)
                 {
                     return BadRequest("Student Data is empty");
@@ -130,11 +130,11 @@ namespace SoftoneStudentManagmentSystem.Controllers
                 //return Ok("Student saved successfully");
                 return Ok(result);
         
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
 
@@ -148,8 +148,8 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
         public async Task<IActionResult>  DeleteStudentData(Guid id)  //Delete Student data
         {
-            try
-            {
+            //try
+            //{
                 if (id == Guid.Empty)
                 {
                     return BadRequest("Invalid student ID");
@@ -157,11 +157,11 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
                 var result = await this.stuService.DeleteStudentData(id);
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
         #endregion
 
