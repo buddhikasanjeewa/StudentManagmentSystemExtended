@@ -9,3 +9,7 @@ Gonapola Junction,Nic=881804063v,Dateofbirth=6/29/1980
 [6/1/2025 2:41:34 PM] Student Details:  Name=Samadi Perera, Email=samadiperera@gmail.com, Mobile=07733444444,Address=456,Honnatara
 Piliyandala,Nic=8744555555,Dateofbirth=6/23/1987
 [6/1/2025 2:59:14 PM] Student Details:  Name=Nadee Perera, Email=nadeeperer32@gmail.com, Mobile=07833444444,Address=,Nic=932222222b,Dateofbirth=6/26/2025
+[6/5/2025 5:29:29 PM] Student Details:  Name=Mewan Perera, Email=buddhikasanje@gmail.com, Mobile=0715153061,Address=190,Olaboduwa Gonapola Junction,Nic=801804063v,Dateofbirth=6/5/2025
+[6/6/2025 2:47:08 PM] Student Details:  Name=Nadee Perera, Email=nadeeperer32@gmail.com, Mobile=07833444444,Address=,Nic=932222222b,Dateofbirth=6/26/2025
+[6/6/2025 8:31:13 PM] Student Details:  Name=Pasan Disanake, Email=pasandisanayake3333@gmail.com, Mobile=07733333333,Address=,Nic=,Dateofbirth=6/19/1997
+[6/6/2025 8:43:53 PM] Student Details:  Name=Lochana Manikkage, Email=locahanmainkkage3333@gmail.com, Mobile=0714444444,Address=,Nic=,Dateofbirth=6/26/1993

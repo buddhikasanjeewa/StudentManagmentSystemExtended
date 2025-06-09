@@ -33,17 +33,19 @@ namespace SoftoneStudentManagmentSystem.Controllers
         #region Get Student Data
 
         [HttpGet]
-        [ResponseCache(Duration = 60)] //Cache Resonse 60 seconds
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        // [ResponseCache(Duration = 60)] //Cache Resonse 60 seconds
         public async Task<IActionResult> GetAllStudentsAsync()  //Get All Student Data
         {
-            try
+           try
             {
                 var result = await this.stuService.GetStudents();
                 if (result == null || result.Count == 0)
                     return NotFound();
                 return Ok(result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
@@ -51,6 +53,7 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
 
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetStudentsByKeyAsync(Guid id)  //Get student data by Id
@@ -107,6 +110,9 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
         #region Update Student Data
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+
         public async Task<IActionResult> SaveStudentData([FromBody] StudentRequest stuRequest)  //Save Student data
         {
             try
@@ -136,6 +142,10 @@ namespace SoftoneStudentManagmentSystem.Controllers
 
         #region Delete Student Data
         [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+
         public async Task<IActionResult>  DeleteStudentData(Guid id)  //Delete Student data
         {
             try

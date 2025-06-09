@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
 using SoftoneStudentManagmentSystem;
+using SoftoneStudentManagmentSystem.Middleware;
 using System.Text.Json;
 
 
@@ -15,7 +17,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
+//builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Softone Student Management System", Version = "v1" });
+});
+
 //Add dependancy injection for DAL and BLL layers
 builder.Services.RegisterDALDependencies(builder.Configuration); 
 builder.Services.RegisterBLLDependencies(builder.Configuration);
@@ -59,9 +67,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseResponseCaching();//Enable response cacheing
 app.UseHttpsRedirection();
-
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 app.UseAuthorization();
 
 // Enable CORS to allow requests from any origin, header, and method
