@@ -34,6 +34,7 @@ namespace SoftoneStudentManagmentSystem.Middleware
             var traceId = Guid.NewGuid();
             this.logger.LogError($"Error occure while processing the request, TraceId : ${traceId}," +
                 $" Message : ${ex.Message}, StackTrace: ${ex.StackTrace}");
+
         }
     }
 }
