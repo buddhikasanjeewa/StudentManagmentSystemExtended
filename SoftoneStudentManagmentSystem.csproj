@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include=".github\workflows\BuildTest.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Business Logic Layer\Business Logic Layer.csproj" />
     <ProjectReference Include="..\DALProject\DAL.csproj" />
   </ItemGroup>
